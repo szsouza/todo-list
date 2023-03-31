@@ -6,9 +6,10 @@ const todoList = document.querySelector("#todo-list")
 const editForm = document.querySelector("#edit-form")
 const editInput = document.querySelector("#edit-input")
 const cancelEditBtn = document.querySelector("#cancel-edit-btn")
+const loading = document.querySelector("#carregar")
 let oldInputValue;
 let text = []
-// text = JSON.parse(localStorage.getItem('lista_tarefas'))
+
 
 
 
@@ -81,21 +82,27 @@ const updateTodo = (Text) => {
 
 
 function saveLocalStorage(text)  {
-  text = document.querySelectorAll(".todo")
+  text = document.querySelectorAll("h3")
+  let array = []
+  for (let i = 0; i < text.length; ++i) {
+    array.unshift(text[i].innerText);
+  }
+    array.reverse();
+    localStorage.setItem('itens', JSON.stringify(array));
 
-  text.forEach((todo) => {
-    let todoTitle = todo.querySelector("h3")
+    todoTitle = (JSON.parse(localStorage.getItem('itens')));
 
-    text =  todoTitle.innerText 
-    console.log(text)
-    
-  })
-
+    console.log(todoTitle)
   
-  localStorage.setItem('lista_tarefas', JSON.stringify(text))
   
 }
 
+function updateLocalStorage() {
+  let update = (JSON.parse(localStorage.getItem('itens')));
+  
+  saveTodo()
+  console.log(update)
+}
 
 
 
@@ -169,6 +176,13 @@ if(editInputValue) {
   saveLocalStorage()
   
 
+})
+
+loading.addEventListener("click", (e) => {
+  e.preventDefault()
+  
+  updateLocalStorage()
+  
 })
 
 

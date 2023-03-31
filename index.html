@@ -11,7 +11,7 @@
   <script src="./js/scripts.js" defer></script>
   <title>To Do List</title>
 </head>
-<body>
+<body onload="updateLocalStorage">
   <div class="todo-container">
     <header>
       <h1>Todo List</h1>
@@ -58,5 +58,6 @@
       
     </div>
   </div>
+  <form><button id="carregar">Carregar</button></form>
 </body>
 </html>
